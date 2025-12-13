@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/donor")
+@RequestMapping("api/v1/donor")
 @RequiredArgsConstructor
 @SecurityRequirement(name = "bearerAuth")
 public class DonorController {

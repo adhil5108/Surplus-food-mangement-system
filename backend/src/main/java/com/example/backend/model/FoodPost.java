@@ -35,4 +35,8 @@ public class FoodPost {
     @ManyToOne
     @JoinColumn(name = "claimed_by_ngo")
     private Users claimedBy;
+
+    @ManyToOne
+    private Users assignedDriver;
+
 }
