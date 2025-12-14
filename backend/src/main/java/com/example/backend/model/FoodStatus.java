@@ -4,5 +4,7 @@ public enum FoodStatus {
     PENDING,
     CLAIMED,
     DRIVER_ASSIGNED,
+    PICKED_UP,
     DELIVERED
 }
+

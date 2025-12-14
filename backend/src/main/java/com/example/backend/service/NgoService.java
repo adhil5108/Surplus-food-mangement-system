@@ -14,6 +14,7 @@ import java.util.List;
 public class NgoService {
 
     private final FoodPostRepo foodPostRepo;
+    private final NotificationService notificationService;
 
     public List<FoodPost> getAvailableFood() {
         return foodPostRepo.findByStatus(FoodStatus.PENDING);
@@ -31,7 +32,11 @@ public class NgoService {
         post.setStatus(FoodStatus.CLAIMED);
         post.setClaimedBy(ngo);
 
-        return foodPostRepo.save(post);
+        FoodPost saved =foodPostRepo.save(post);
+        notificationService.send(post.getDonor().getId(),
+                "Your food was claimed by NGO: " + ngo.getUsername());
+
+        return saved;
     }
 }
 

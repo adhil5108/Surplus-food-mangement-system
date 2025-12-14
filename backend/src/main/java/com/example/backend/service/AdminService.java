@@ -17,10 +17,12 @@ public class AdminService {
 
     private final FoodPostRepo foodPostRepo;
     private final UserRepository userRepo;
+    private final NotificationService notificationService;
 
     public List<FoodPost> getAllFoods() {
-        return foodPostRepo.findAll();
+        return foodPostRepo.findByStatusNot(FoodStatus.DELIVERED);
     }
+
 
     public List<Users> getAllDrivers() {
         return userRepo.findByRole(Role.valueOf("DRIVER"));
@@ -41,6 +43,15 @@ public class AdminService {
         post.setAssignedDriver(driver);
         post.setStatus(FoodStatus.DRIVER_ASSIGNED);
 
-        return foodPostRepo.save(post);
+        FoodPost saved = foodPostRepo.save(post);
+
+        notificationService.send(post.getDonor().getId(), "Driver assigned to your food post.");
+        notificationService.send(post.getClaimedBy().getId(), "Driver assigned!");
+
+        return saved;
     }
+    public List<FoodPost> getDeliveredFoods() {
+        return foodPostRepo.findByStatus(FoodStatus.DELIVERED);
+    }
+
 }

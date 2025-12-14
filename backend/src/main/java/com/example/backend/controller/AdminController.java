@@ -32,7 +32,12 @@ public class AdminController {
 
     @PatchMapping("/assign-driver/{postId}")
     public FoodPost assignDriver(@PathVariable Long postId, @RequestParam Long driverId) throws Exception {
-        // you can also verify admin user if needed
         return adminService.assignDriver(postId, driverId);
     }
+
+    @GetMapping("/delivered")
+    public List<FoodPost> getDelivered() {
+        return adminService.getDeliveredFoods();
+    }
+
 }
