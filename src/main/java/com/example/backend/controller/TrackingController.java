@@ -20,8 +20,7 @@ public class TrackingController {
                 .orElseThrow(() -> new RuntimeException("Food not found"));
 
         return new TrackingResponse(
-                post.getDriverLat(),
-                post.getDriverLng(),
+                post.getLocationurl(),
                 post.getStatus().name()
         );
     }

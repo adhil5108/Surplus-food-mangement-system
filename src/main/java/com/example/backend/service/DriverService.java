@@ -26,13 +26,11 @@ public class DriverService {
         );
     }
 
-    public FoodPost updateLocation(Users driver, Double lat, Double lng) throws Exception {
+    public FoodPost updateLocation(Users driver, String livelocation) throws Exception {
         FoodPost post = foodPostRepo.findFirstByAssignedDriver(driver)
                 .orElseThrow(() -> new Exception("No assigned delivery"));
 
-        post.setDriverLat(lat);
-        post.setDriverLng(lng);
-
+        post.setLocationurl(livelocation);
         return foodPostRepo.save(post);
     }
 

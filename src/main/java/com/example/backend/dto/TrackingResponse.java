@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class TrackingResponse {
-    private Double lat;
-    private Double lng;
+    private String liveurl;
     private String status;
 }

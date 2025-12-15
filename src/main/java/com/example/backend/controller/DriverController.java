@@ -34,10 +34,9 @@ public class DriverController {
 
     @PostMapping("/update-location")
     public FoodPost updateLocation(
-            @RequestParam Double lat,
-            @RequestParam Double lng
+            @RequestParam String livelocation
     ) throws Exception {
-        return driverService.updateLocation(getDriver(), lat, lng);
+        return driverService.updateLocation(getDriver(), livelocation);
     }
 
 

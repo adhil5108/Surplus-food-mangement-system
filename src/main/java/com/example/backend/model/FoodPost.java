@@ -39,8 +39,7 @@ public class FoodPost {
     @ManyToOne
     private Users assignedDriver;
 
-    private Double driverLat;
-    private Double driverLng;
+    private String locationurl;
 
 
 }
